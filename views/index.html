@@ -2,9 +2,6 @@
 {% set title = 'Example' %}
 
 <!-- Include base -->
-{% extends "components/base.html" %}
-
-{% block content %}
-  <!-- Include components into block -->
-  {% include "components/example.html" %}
-{% endblock %} 
+{% extends "components/base.html" %} {% block content %}
+<!-- Include components into block -->
+{% include "components/crops.html" %} {% endblock %}
