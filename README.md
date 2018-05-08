@@ -1,1 +1,3 @@
-# project3-new-concepts-with-realtime-data
+# project3
+
+Door: Jelle, Vienna en Koos
