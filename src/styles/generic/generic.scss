@@ -1,0 +1,13 @@
+body {
+  font-family: 'Barlow';
+  font-size: 1.375em;
+}
+h1 {
+  font-family: 'Barlow Condensed';
+  text-transform: uppercase;
+  font-size: 2.5em;
+}
+section {
+  height: 100vh;
+  background: $bg-light;
+}
