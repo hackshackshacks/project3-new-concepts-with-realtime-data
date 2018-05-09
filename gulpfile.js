@@ -63,6 +63,10 @@ gulp.task('images', () => {
     .pipe(gulp.dest('assets/images'))
 })
 
+gulp.task('animations', () => {
+  return gulp.src('src/animations/**/*').pipe(gulp.dest('assets/animations'))
+})
+
 /* Process fonts */
 gulp.task('fonts', () => {
   return gulp.src('src/fonts/*').pipe(gulp.dest('assets/fonts'))
@@ -94,15 +98,23 @@ gulp.task('open', () => {
 })
 
 // Combined tasks
-gulp.task('default', ['nodemon', 'sass', 'bundle', 'images', 'fonts', 'watch'])
+gulp.task('default', [
+  'nodemon',
+  'sass',
+  'bundle',
+  'images',
+  'animations',
+  'fonts',
+  'watch'
+])
 gulp.task(
   'start',
   gulpSequence(
-    ['nodemon', 'sass', 'bundle', 'images', 'fonts', 'watch'],
+    ['nodemon', 'sass', 'bundle', 'images', 'animations', 'fonts', 'watch'],
     'open'
   )
 )
 gulp.task(
   'prod',
-  gulpSequence('clean', ['sass-p', 'bundle-p', 'images', 'fonts'])
+  gulpSequence('clean', ['sass-p', 'bundle-p', 'images', 'animations', 'fonts'])
 )
