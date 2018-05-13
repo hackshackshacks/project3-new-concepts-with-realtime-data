@@ -13,12 +13,6 @@ section {
   background: $bg-light;
   position: relative;
   transition: 1000ms;
-  &.inView {
-    background: dodgerblue !important;
-  }
-  &:nth-child(even) {
-    background: $water-light;
-  }
   .wrap {
     max-width: 70rem;
     margin: 0 auto;
@@ -28,8 +22,11 @@ section {
   }
   .info {
     max-width: 50%;
+    z-index: 2;
   }
 }
 .animation {
   position: absolute;
+  width: 100%;
+  left: 0;
 }
