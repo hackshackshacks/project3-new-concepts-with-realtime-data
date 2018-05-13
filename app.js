@@ -11,13 +11,7 @@ const api = {
   client: null,
   init: function() {
     this.client = Stomp.over(this.url)
-    this.client.connect(
-      'web',
-      'mnwdTGgQu5zPmSrz',
-      this.onConnect,
-      console.error,
-      '/'
-    )
+    this.client.connect('web', 'mnwdTGgQu5zPmSrz', this.onConnect)
   },
   onConnect: function() {
     api.client.subscribe('/exchange/aquaponics/deceuvel', api.handleData)
@@ -28,7 +22,6 @@ const api = {
 }
 
 api.init()
-
 
 app.use(compression())
 app.use(express.static(`${__dirname}/assets`))
