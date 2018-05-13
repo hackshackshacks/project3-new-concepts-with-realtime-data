@@ -11,10 +11,10 @@ h1 {
 section {
   height: 70vh;
   background: $bg-light;
-  border: 10px dashed dodgerblue;
   position: relative;
+  transition: 1000ms;
   &.inView {
-    background: red !important;
+    background: dodgerblue !important;
   }
   &:nth-child(even) {
     background: $water-light;
