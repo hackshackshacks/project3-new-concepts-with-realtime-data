@@ -6,27 +6,29 @@ const compression = require('compression')
 const sockJs = require('sockjs-client-node')
 const Stomp = require('stompjs')
 
-// const api = {
-//   url: new sockJs('https://app.jouliette.net/stomp/'),
-//   client: null,
-//   init: function() {
-//     this.client = Stomp.over(this.url)
-//     this.client.connect(
-//       'web',
-//       'mnwdTGgQu5zPmSrz',
-//       this.onConnect,
-//       console.error,
-//       '/'
-//     )
-//   },
-//   onConnect: function() {
-//     api.client.subscribe('/exchange/power/A0', api.handleData)
-//   },
-//   handleData: function(d) {
-//     console.log(JSON.parse(d.body))
-//   }
-// }
-// api.init()
+const api = {
+  url: new sockJs('https://app.jouliette.net/stomp/'),
+  client: null,
+  init: function() {
+    this.client = Stomp.over(this.url)
+    this.client.connect(
+      'web',
+      'mnwdTGgQu5zPmSrz',
+      this.onConnect,
+      console.error,
+      '/'
+    )
+  },
+  onConnect: function() {
+    api.client.subscribe('/exchange/aquaponics/deceuvel', api.handleData)
+  },
+  handleData: function(d) {
+    console.log(JSON.parse(d.body))
+  }
+}
+
+api.init()
+
 
 app.use(compression())
 app.use(express.static(`${__dirname}/assets`))
