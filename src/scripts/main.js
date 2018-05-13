@@ -1,13 +1,39 @@
 const animData = {
-  one: {
-    container: document.querySelector('#animation-1'),
+  fish: {
+    container: document.querySelector('#animation-fish'),
     renderer: 'svg',
     loop: true,
-    autoplay: true,
-    path: '../animations/test.json'
+    autoplay: false,
+    path: '../animations/fish.json'
+  },
+  water: {
+    container: document.querySelector('#animation-water'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: false,
+    path: '../animations/watering-plants.json'
+  },
+  bacteria: {
+    container: document.querySelector('#animation-bacteria'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: false,
+    path: '../animations/bacteria.json'
+  },
+  grow: {
+    container: document.querySelector('#animation-grow'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: false,
+    path: '../animations/growing-plants.json'
   }
 }
-const animation1 = lottie.loadAnimation(animData.one)
+const animations = [
+  lottie.loadAnimation(animData.fish),
+  lottie.loadAnimation(animData.water),
+  lottie.loadAnimation(animData.bacteria),
+  lottie.loadAnimation(animData.grow)
+]
 
 let options = {
   root: null, // refers to window. Use document.querySelector to refer to a container
@@ -15,18 +41,26 @@ let options = {
   threshold: 0.0001 // visible amount of item shown in relation to root
 }
 
-animData.one.container.addEventListener('click', () => {
-  animation1.playSegments([10, 20], false)
-})
+// animData.one.container.addEventListener('click', () => {
+//   animation1.playSegments([10, 20], false)
+// })
 
+function startAnim(index) {
+  animations[index].play()
+}
+function stopAnim(index) {
+  animations[index].goToAndStop(0, true)
+}
 function change(entries, observer) {
   console.log(entries)
   entries.forEach(entry => {
     console.log(entry.target, entry.intersectionRatio)
     if (entry.intersectionRatio >= options.threshold) {
-      entry.target.classList.add('inView')
+      console.log(entry.target.dataset.anim)
+      startAnim(entry.target.dataset.anim)
     } else {
-      entry.target.classList.remove('inView')
+      console.log(entry.target.dataset.anim)
+      stopAnim(entry.target.dataset.anim)
     }
   })
 }
