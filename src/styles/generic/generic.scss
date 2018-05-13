@@ -1,6 +1,7 @@
 body {
   font-family: 'Barlow';
   font-size: 1.375em;
+  line-height: 1.8;
 }
 h1 {
   font-family: 'Barlow Condensed';
@@ -8,6 +9,27 @@ h1 {
   font-size: 2.5em;
 }
 section {
-  height: 100vh;
+  height: 70vh;
   background: $bg-light;
+  border: 10px dashed dodgerblue;
+  position: relative;
+  &.inView {
+    background: red !important;
+  }
+  &:nth-child(even) {
+    background: $water-light;
+  }
+  .wrap {
+    max-width: 70rem;
+    margin: 0 auto;
+    height: 100%;
+    display: grid;
+    place-items: center end;
+  }
+  .info {
+    max-width: 50%;
+  }
+}
+.animation {
+  position: absolute;
 }
