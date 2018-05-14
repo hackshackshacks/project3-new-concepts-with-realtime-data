@@ -48,7 +48,7 @@ gulp.task('bundle-p', () => {
     .pipe(concat('bundle.js'))
     .pipe(
       babel({
-        presets: ['es2015']
+        presets: ['env']
       })
     )
     .pipe(uglify())
