@@ -45,10 +45,12 @@
   }
   &:hover .text {
     max-width: 999px;
-    padding: 1.5rem 2rem 1rem 4rem;
+    padding-left: 4rem;
+    padding-right: 2rem;
     p,
-    h3 {
-      animation: show 1s forwards;
+    h3,
+    .time {
+      opacity: 1;
     }
   }
 
@@ -91,25 +93,28 @@
   background: rgba(255, 255, 255, 0.95);
   max-width: 0;
   overflow: hidden;
-  transition: 1s max-width;
+  transition: max-width 1s, padding-left 500ms;
   position: absolute;
   right: 4rem;
   top: 0;
   height: 100%;
   border: 2px solid #dce9ea;
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
   p,
-  h3 {
+  h3,
+  .time {
     opacity: 0;
+    white-space: nowrap;
+    transition: opacity 1s;
   }
   h3 {
     font-size: 1em;
     font-weight: normal;
     color: #333333;
-    white-space: nowrap;
   }
   p {
     font-size: 0.8em;
-    white-space: nowrap;
     margin-right: 6rem;
     color: $text-light;
   }
