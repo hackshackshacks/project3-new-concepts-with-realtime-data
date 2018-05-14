@@ -120,6 +120,7 @@ const animation = {
     }
   },
   stop: function(index) {
+    index = index * 1
     switch (index) {
       case 0:
         this.fish.goToAndStop(0, true)
@@ -140,7 +141,7 @@ const intersectionObserver = {
   options: {
     root: null, // refers to window. Use document.querySelector to refer to a container
     rootMargin: '0px', // margin around root. Values are similar to css property. Unitless values not allowed
-    threshold: 0.4 // visible amount of item shown in relation to root
+    threshold: 0.001 // visible amount of item shown in relation to root
   },
   init: function() {
     let observer = new IntersectionObserver(this.change, this.options) // set callback and options
