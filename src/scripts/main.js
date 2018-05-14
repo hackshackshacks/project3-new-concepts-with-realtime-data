@@ -12,7 +12,7 @@ const app = {
         statuses: document.querySelectorAll('.roomTemp .status')
       },
       waterTemp: {
-        wrap: document.querySelectorAll('.humidity'),
+        wrap: document.querySelectorAll('.waterTemp'),
         values: document.querySelectorAll('.waterTemp .value'),
         statuses: document.querySelectorAll('.waterTemp .status')
       },
@@ -203,8 +203,10 @@ const intersectionObserver = {
     entries.forEach(entry => {
       if (entry.intersectionRatio >= intersectionObserver.options.threshold) {
         animation.start(entry.target.dataset.anim)
+        entry.target.classList.add('inView')
       } else {
         animation.stop(entry.target.dataset.anim)
+        entry.target.classList.remove('inView')
       }
     })
   }
