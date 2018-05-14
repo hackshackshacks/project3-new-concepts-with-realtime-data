@@ -66,51 +66,51 @@ const api = {
     switch (stat) {
       case 'ph':
         if (value > 7.5) {
-          obj.status = 'high'
+          obj.status = 'te hoog'
         } else if (value < 6) {
-          obj.status = 'low'
+          obj.status = 'te laag'
         } else {
-          obj.status = 'ok'
+          obj.status = 'goed'
         }
         return obj
         break
       case 'conductivity':
         if (value > 4) {
-          obj.status = 'high'
+          obj.status = 'te hoog'
         } else if (value < 1) {
-          obj.status = 'low'
+          obj.status = 'te laag'
         } else {
-          obj.status = 'ok'
+          obj.status = 'goed'
         }
         return obj
         break
       case 'waterTemp':
         if (value > 32) {
-          obj.status = 'high'
+          obj.status = 'te hoog'
         } else if (value < 18) {
-          obj.status = 'low'
+          obj.status = 'te laag'
         } else {
-          obj.status = 'ok'
+          obj.status = 'goed'
         }
         return obj
         break
       case 'humidity':
         if (value > 80) {
-          obj.status = 'high'
+          obj.status = 'te hoog'
         } else if (value < 60) {
-          obj.status = 'low'
+          obj.status = 'te laag'
         } else {
-          obj.status = 'ok'
+          obj.status = 'goed'
         }
         return obj
         break
       case 'roomTemp':
         if (value > 34) {
-          obj.status = 'high'
+          obj.status = 'te hoog'
         } else if (value < 24) {
-          obj.status = 'low'
+          obj.status = 'te laag'
         } else {
-          obj.status = 'ok'
+          obj.status = 'goed'
         }
         return obj
         break
