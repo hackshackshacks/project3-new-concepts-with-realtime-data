@@ -1,8 +1,13 @@
 <!-- Variables -->
-{% set title = 'Example' %}
+{% set title = 'Aquaponics' %}
 
 <!-- Include base -->
-{% extends "components/base.html" %} {% block content %}
-<!-- Include components into block -->
-{% include "components/fish.html" %} {% include "components/water.html" %} {% include "components/bacteria.html" %} {% include
-"components/grow.html" %} {% endblock %}
+{% extends "components/base.html" %}
+
+{% block content %}
+    <!-- Include components into block -->
+    {% include "components/fish.html" %}
+    {% include "components/water.html" %}
+    {% include "components/bacteria.html" %}
+    {% include "components/grow.html" %}
+{% endblock %}

@@ -1,38 +1,97 @@
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'Barlow';
-  font-size: 1.375em;
-  line-height: 1.8;
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.375em;
+    line-height: 1.8;
+    color: $text-dark;
 }
+
 h1 {
-  font-family: 'Barlow Condensed';
-  text-transform: uppercase;
-  font-size: 2.5em;
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    font-size: 2.5em;
+    margin-bottom: 0.2rem;
 }
+
+p {
+    margin-top: 0;
+}
+
+a {
+    color: $text-dark;
+
+    &:hover {
+        color: darken($text-dark, 10%);
+    }
+}
+
+.link-list {
+
+    a {
+        font-size: rem(18);
+        text-decoration: none;
+        font-weight: 600;
+        display: block;
+        padding: rem(12) rem(14);
+        border: 2px solid rgba($text-dark, 0.1);
+        margin-top: rem(8);
+        border-radius: 3px;
+        background: rgba($text-dark, 0.00);
+
+        transition: background ease-in-out 0.1s;
+
+        &:hover {
+            background: rgba($text-dark, 0.03);
+        }
+    }
+}
+
 section {
-  height: 70vh;
-  background: $bg-light;
-  position: relative;
-  transition: 1000ms;
-  .wrap {
-    max-width: 70rem;
-    margin: 0 auto;
-    height: 100%;
+    height: auto;
+    background: $bg-light;
+    position: relative;
+
     display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
     place-items: center end;
-  }
-  .info {
-    max-width: 50%;
-    z-index: 2;
-  }
+
+    .animation,
+    .animation__info {
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+    }
 }
+
 .animation {
-  position: absolute;
-  height: 56.25vw;
-  width: 100vw;
-  left: 0;
-  // &.fish {
-  //   width: 100%;
-  //   height: auto;
-  //   transform: translatey(-50%);
-  // }
+    left: 0;
+    right: 0;
+    max-width: 1280px;
+    margin: auto;
+}
+
+.animation__info {
+    margin-right: rem(80);
+    max-width: 38%;
+    z-index: 2;
+}
+
+.animation--full-width {
+    padding: 0;
+    max-width: none;
+    width: 100%;
+    height: auto;
+}
+
+.fish {
+    background-color: #E5F3FD;
+}
+
+.bacteria {
+    background-color: #fffefb;
 }
