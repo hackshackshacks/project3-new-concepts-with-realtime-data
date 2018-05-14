@@ -240,4 +240,64 @@ const helper = {
     element.insertAdjacentHTML('beforeend', string)
   }
 }
+const smoothScroll = {
+    // Scroll to function using requestanimationframe
+    // Source: https://stackoverflow.com/questions/17722497/scroll-smoothly-to-specific-element-on-page
+    scroll: function (elementY, duration) {
+        let startingY = window.pageYOffset
+        let diff = elementY - startingY
+        let start
+
+        // Bootstrap our animation - it will get called right before next frame shall be rendered.
+        window.requestAnimationFrame(function step(timestamp) {
+            if (!start) start = timestamp
+            // Elapsed milliseconds since start of scrolling.
+            let time = timestamp - start
+            // Get percent of completion in range [0, 1].
+            let percent = Math.min(time / duration, 1)
+
+            window.scrollTo(0, startingY + diff * percent)
+
+            // Proceed with animation as long as we wanted it to.
+            if (time < duration) {
+                window.requestAnimationFrame(step)
+            }
+        })
+    },
+    getElementY: function(element) {
+        return element.offsetTop
+    },
+    getElementHeight: function(element) {
+        return element.clientHeight
+    },
+    setEventListeners: function(element) {
+        const _this = this
+
+        element.addEventListener("click", function (event) {
+            event.preventDefault()
+
+            let navElement = document.querySelector("nav"),
+                navHeight = _this.getElementHeight(navElement),
+                targetElementId = this.getAttribute("href"),
+                targetElement = document.querySelector(targetElementId),
+                targetElementY = _this.getElementY(targetElement)
+
+            _this.scroll(targetElementY - navHeight, 230)
+        })
+    },
+    init: function () {
+        const _this = this
+        const links = document.querySelectorAll("a")
+
+        links.forEach(function (link, index) {
+
+            if(link.href.indexOf("#") >= 0) {
+                _this.setEventListeners(link)
+            }
+
+        })
+    }
+}
 app.init()
+
+smoothScroll.init()
