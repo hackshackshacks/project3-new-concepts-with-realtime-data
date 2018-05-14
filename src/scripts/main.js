@@ -37,32 +37,31 @@ const app = {
       helper.replaceHTML(status, data.humidity.status)
     })
     this.elements.stats.roomTemp.values.forEach(el => {
-      helper.replaceHTML(el, data.roomTemp)
+      helper.replaceHTML(el, data.roomTemp.value)
     })
     this.elements.stats.roomTemp.statuses.forEach(el => {
-      helper.replaceHTML(el, data.roomTemp)
+      helper.replaceHTML(el, data.roomTemp.status)
     })
     this.elements.stats.waterTemp.values.forEach(el => {
-      helper.replaceHTML(el, data.waterTemp)
+      helper.replaceHTML(el, data.waterTemp.value)
     })
     this.elements.stats.waterTemp.statuses.forEach(el => {
-      helper.replaceHTML(el, data.waterTemp)
+      helper.replaceHTML(el, data.waterTemp.status)
     })
     this.elements.stats.pH.values.forEach(el => {
-      helper.replaceHTML(el, data.pH)
+      helper.replaceHTML(el, data.pH.value)
     })
     this.elements.stats.pH.statuses.forEach(el => {
-      helper.replaceHTML(el, data.pH)
+      helper.replaceHTML(el, data.pH.status)
     })
     this.elements.stats.conductivity.values.forEach(el => {
-      helper.replaceHTML(el, data.conductivity)
+      helper.replaceHTML(el, data.conductivity.value)
     })
     this.elements.stats.conductivity.statuses.forEach(el => {
-      helper.replaceHTML(el, data.conductivity)
+      helper.replaceHTML(el, data.conductivity.status)
     })
   }
 }
-<<<<<<< HEAD
 const animation = {
   config: {
     fish: {
@@ -136,19 +135,6 @@ const animation = {
         break
     }
   }
-=======
-const animations = [
-  lottie.loadAnimation(animData.fish),
-  lottie.loadAnimation(animData.water),
-  lottie.loadAnimation(animData.bacteria),
-  lottie.loadAnimation(animData.grow)
-]
-
-let options = {
-  root: null, // refers to window. Use document.querySelector to refer to a container
-  rootMargin: '0px', // margin around root. Values are similar to css property. Unitless values not allowed
-  threshold: 0.4 // visible amount of item shown in relation to root
->>>>>>> 93e65708693cc084a5f8e57079d213e8c14636e2
 }
 const intersectionObserver = {
   options: {
