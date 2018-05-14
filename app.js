@@ -5,10 +5,13 @@ const request = require('request')
 const compression = require('compression')
 const sockJs = require('sockjs-client-node')
 const Stomp = require('stompjs')
+const http = require('http').Server(app)
+const io = require('socket.io')(http)
 
 const api = {
   url: new sockJs('https://app.jouliette.net/stomp/'),
   client: null,
+  data: {},
   init: function() {
     this.client = Stomp.over(this.url)
     this.client.heartbeat.outgoing = 1000
@@ -32,13 +35,98 @@ const api = {
     api.connect()
   },
   handleData: function(d) {
+    let parsed = JSON.parse(d.body)
+    console.log('parsed:', parsed)
     if (d.body) {
-      console.log(JSON.parse(d.body))
-      this.data = d.body
-      console.log('unsub')
+      api.data = {
+        ph: api.getStatus('ph', helper.round(parsed.ph, 2)),
+        conductivity: api.getStatus(
+          'conductivity',
+          helper.round(parsed.mscm2, 2)
+        ),
+        waterTemp: api.getStatus(
+          'waterTemp',
+          helper.round(parsed.water_temp, 2)
+        ),
+        humidity: api.getStatus('humidity', helper.round(parsed.humidity, 2)),
+        roomTemp: api.getStatus('roomTemp', helper.round(parsed.room_temp, 2)),
+        date: parsed.date,
+        time: parsed.ph
+      }
+      io.emit('data', api.data)
+    }
+  },
+  getStatus: function(stat, value, time) {
+    // if (time) {
+    //   let date = new Date(time)
+    // }
+    let obj = {
+      value: value
+    }
+    switch (stat) {
+      case 'ph':
+        if (value > 7.5) {
+          obj.status = 'high'
+        } else if (value < 6) {
+          obj.status = 'low'
+        } else {
+          obj.status = 'ok'
+        }
+        return obj
+        break
+      case 'conductivity':
+        if (value > 4) {
+          obj.status = 'high'
+        } else if (value < 1) {
+          obj.status = 'low'
+        } else {
+          obj.status = 'ok'
+        }
+        return obj
+        break
+      case 'waterTemp':
+        if (value > 32) {
+          obj.status = 'high'
+        } else if (value < 18) {
+          obj.status = 'low'
+        } else {
+          obj.status = 'ok'
+        }
+        return obj
+        break
+      case 'humidity':
+        if (value > 80) {
+          obj.status = 'high'
+        } else if (value < 60) {
+          obj.status = 'low'
+        } else {
+          obj.status = 'ok'
+        }
+        return obj
+        break
+      case 'roomTemp':
+        if (value > 34) {
+          obj.status = 'high'
+        } else if (value < 24) {
+          obj.status = 'low'
+        } else {
+          obj.status = 'ok'
+        }
+        return obj
+        break
     }
   }
 }
+
+helper = {
+  round: function(num, decimals) {
+    let multiplier = Math.pow(10, decimals)
+    return Math.round(num * multiplier) / multiplier
+  }
+}
+io.on('connection', function(socket) {
+  io.emit('data', api.data)
+})
 
 api.init()
 
@@ -54,10 +142,6 @@ app.get('/', (req, res) => {
   res.render('index.html', {})
 })
 
-app.get('/api/all', function(req, res) {
-  res.status(200).send(JSON.stringify(api.data))
-})
-
-app.listen(8001, () => {
+http.listen(8001, () => {
   console.log('Listening.. port 8001')
 })
