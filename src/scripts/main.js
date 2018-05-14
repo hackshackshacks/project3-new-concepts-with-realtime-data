@@ -19,13 +19,6 @@ const animData = {
     loop: true,
     autoplay: false,
     path: '../animations/bacteria.json'
-  },
-  grow: {
-    container: document.querySelector('#animation-grow'),
-    renderer: 'svg',
-    loop: true,
-    autoplay: false,
-    path: '../animations/growing-plants.json'
   }
 }
 const animations = [
