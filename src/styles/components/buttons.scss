@@ -1,0 +1,26 @@
+button,
+input[type="submit"],
+.button {
+    border: 0;
+    display: block;
+    text-align: center;
+    -webkit-appearance: none;
+    padding: rem(12) rem(32);
+    background-color: $blue;
+    color: #fff;
+    text-decoration: none;
+    font-size: rem(18);
+    font-weight: 600;
+    border-radius: $border-radius;
+
+    @include transition();
+
+    &:hover {
+        background-color: darken($blue, 5%);
+        color: #fff;
+    }
+}
+
+.button--full-width {
+    width: 100%;
+}

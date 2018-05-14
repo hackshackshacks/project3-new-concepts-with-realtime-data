@@ -6,7 +6,7 @@ html {
 
 body {
     font-family: 'Barlow', sans-serif;
-    font-size: 1.375em;
+    font-size: rem(22);
     line-height: 1.8;
     color: $text-dark;
 }
@@ -14,8 +14,15 @@ body {
 h1 {
     font-family: 'Barlow Condensed', sans-serif;
     text-transform: uppercase;
-    font-size: 2.5em;
-    margin-bottom: 0.2rem;
+    font-size: rem(56);
+    margin-bottom: rem(8);
+}
+
+h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    font-size: rem(40);
+    margin: 0 0 rem(8) 0;
 }
 
 p {
@@ -23,37 +30,38 @@ p {
 }
 
 a {
-    color: $text-dark;
+    color: $text-blue;
+    font-weight: 500;
 
     &:hover {
-        color: darken($text-dark, 10%);
+        color: darken($text-blue, 10%);
     }
 }
 
 .link-list {
-
     a {
         font-size: rem(18);
         text-decoration: none;
         font-weight: 600;
         display: block;
         padding: rem(12) rem(14);
-        border: 2px solid rgba($text-dark, 0.1);
+        border: 2px solid rgba($text-blue, 0.1);
         margin-top: rem(8);
         border-radius: 3px;
-        background: rgba($text-dark, 0.00);
+        background: rgba($text-blue, 0.00);
 
-        transition: background ease-in-out 0.1s;
+        @include transition();
 
         &:hover {
-            background: rgba($text-dark, 0.03);
+            background: rgba($text-blue, 0.03);
         }
     }
 }
 
-section {
+.intersection {
     height: auto;
     background: $bg-light;
+    max-height: 100vh;
     position: relative;
 
     display: grid;
@@ -68,17 +76,33 @@ section {
     }
 }
 
+.container {
+    max-width: rem(1280);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-section {
+    max-width: rem(672);
+    margin: 0 auto;
+    padding: rem(112) 0;
+}
+
 .animation {
     left: 0;
     right: 0;
-    max-width: 1280px;
+    max-width: rem(1280);
     margin: auto;
 }
 
 .animation__info {
-    margin-right: rem(80);
-    max-width: 38%;
-    z-index: 2;
+    margin-right: rem(48);
+    max-width: 40%;
+    z-index: $zindex-animationInfo;
+    background-color: #fff;
+    padding: rem(48);
+    border-radius: $border-radius*2;
+
 }
 
 .animation--full-width {
@@ -88,10 +112,10 @@ section {
     height: auto;
 }
 
-.fish {
+#fish {
     background-color: #E5F3FD;
 }
 
-.bacteria {
+#bacteria {
     background-color: #fffefb;
 }
