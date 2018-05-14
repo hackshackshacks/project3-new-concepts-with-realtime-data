@@ -1,3 +1,8 @@
+.inView {
+  .stats svg {
+    animation: shrink 1s forwards 1s, moveLeft 1s forwards 2s;
+  }
+}
 .stats {
   display: grid;
   grid-auto-flow: column;
@@ -61,7 +66,6 @@
     }
     svg {
       height: 50px;
-      animation: shrink 1s forwards 1s, moveLeft 1s forwards 2s;
     }
     p {
       opacity: 0;
