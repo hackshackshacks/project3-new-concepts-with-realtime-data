@@ -11,6 +11,11 @@ const api = {
   client: null,
   init: function() {
     this.client = Stomp.over(this.url)
+    this.client.heartbeat.outgoing = 1000
+    this.client.heartbeat.incoming = 0
+    this.connect()
+  },
+  connect: function() {
     this.client.connect(
       'web',
       'mnwdTGgQu5zPmSrz',
@@ -24,16 +29,14 @@ const api = {
   },
   handleError: function(err) {
     console.log('err:', err)
-    api.init()
+    api.connect()
   },
   handleData: function(d) {
-    console.log(JSON.parse(d.body))
-    console.log('unsub')
-    api.client.unsubscribe()
-    setTimeout(() => {
-      console.log('re')
-      api.init()
-    }, 10000)
+    if (d.body) {
+      console.log(JSON.parse(d.body))
+      this.data = d.body
+      console.log('unsub')
+    }
   }
 }
 
@@ -49,6 +52,10 @@ nunjucks.configure('views', {
 
 app.get('/', (req, res) => {
   res.render('index.html', {})
+})
+
+app.get('/api/all', function(req, res) {
+  res.status(200).send(JSON.stringify(api.data))
 })
 
 app.listen(8001, () => {
