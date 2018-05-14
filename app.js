@@ -11,13 +11,29 @@ const api = {
   client: null,
   init: function() {
     this.client = Stomp.over(this.url)
-    this.client.connect('web', 'mnwdTGgQu5zPmSrz', this.onConnect)
+    this.client.connect(
+      'web',
+      'mnwdTGgQu5zPmSrz',
+      this.onConnect,
+      this.handleError
+    )
   },
   onConnect: function() {
     api.client.subscribe('/exchange/aquaponics/deceuvel', api.handleData)
+    console.log('sub')
+  },
+  handleError: function(err) {
+    console.log('err:', err)
+    api.init()
   },
   handleData: function(d) {
     console.log(JSON.parse(d.body))
+    console.log('unsub')
+    api.client.unsubscribe()
+    setTimeout(() => {
+      console.log('re')
+      api.init()
+    }, 10000)
   }
 }
 

@@ -38,12 +38,8 @@ const animations = [
 let options = {
   root: null, // refers to window. Use document.querySelector to refer to a container
   rootMargin: '0px', // margin around root. Values are similar to css property. Unitless values not allowed
-  threshold: 0.0001 // visible amount of item shown in relation to root
+  threshold: 0.9 // visible amount of item shown in relation to root
 }
-
-// animData.one.container.addEventListener('click', () => {
-//   animation1.playSegments([10, 20], false)
-// })
 
 function startAnim(index) {
   animations[index].play()
