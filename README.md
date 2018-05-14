@@ -8,7 +8,7 @@ De Ceuvel is a city playground for innovation and creativity. An experiment in w
 ### Goal  
 One of the projects at De Ceuvel is a [aquaponics system](https://www.youtube.com/watch?v=b3KMLZiWYns). We aimed to make the system more understandable for a broader audience (high school students for example). We did this by making short and funny animations and small pieces of text to explain the system.   
   
-**Real-time data**
+**Real-time data**  
 The application also contains real-time data that is streamed from the installation. Every measured item contains an explanation about whether the current value is good or bad for the plants/fish. 
 
 
