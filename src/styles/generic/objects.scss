@@ -1,9 +1,11 @@
 .stats {
-  display: flex;
-  justify-content: flex-end;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 1rem;
+  justify-content: end;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 2rem;
+  right: 2rem;
 }
 .stat {
   display: flex;
@@ -17,7 +19,7 @@
   }
   &:hover .text {
     max-width: 999px;
-    padding: 1.5rem 2rem 1rem 2rem;
+    padding: 1.5rem 2rem 1rem 4rem;
     p,
     h3 {
       animation: show 1s forwards;
@@ -62,7 +64,7 @@
 .text {
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.95);
   max-width: 0;
   overflow: hidden;
   transition: 1s max-width;
@@ -79,12 +81,12 @@
     font-size: 1em;
     font-weight: normal;
     color: #333333;
+    white-space: nowrap;
   }
   p {
     font-size: 0.8em;
-    max-width: 500px;
     white-space: nowrap;
-    margin-right: 12rem;
+    margin-right: 6rem;
     color: $text-light;
   }
 }
