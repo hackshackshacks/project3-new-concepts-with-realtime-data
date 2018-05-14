@@ -1,8 +1,65 @@
 const app = {
+  elements: {
+    stats: {
+      humidity: {
+        values: document.querySelectorAll('.humidity .value'),
+        statuses: document.querySelectorAll('.humidity .status')
+      },
+      roomTemp: {
+        values: document.querySelectorAll('.roomTemp .value'),
+        statuses: document.querySelectorAll('.roomTemp .status')
+      },
+      waterTemp: {
+        values: document.querySelectorAll('.waterTemp .value'),
+        statuses: document.querySelectorAll('.waterTemp .status')
+      },
+      pH: {
+        values: document.querySelectorAll('.pH .value'),
+        statuses: document.querySelectorAll('.pH .status')
+      },
+      conductivity: {
+        values: document.querySelectorAll('.conductivity .value'),
+        statuses: document.querySelectorAll('.conductivity .status')
+      }
+    }
+  },
   init: function() {
-    api.init()
     intersectionObserver.init()
     animation.init()
+    connect.init()
+  },
+  handleData: function(data) {
+    console.log(data)
+    this.elements.stats.humidity.values.forEach(value => {
+      helper.replaceHTML(value, data.humidity.value)
+    })
+    this.elements.stats.humidity.statuses.forEach(status => {
+      helper.replaceHTML(status, data.humidity.status)
+    })
+    this.elements.stats.roomTemp.values.forEach(el => {
+      helper.replaceHTML(el, data.roomTemp)
+    })
+    this.elements.stats.roomTemp.statuses.forEach(el => {
+      helper.replaceHTML(el, data.roomTemp)
+    })
+    this.elements.stats.waterTemp.values.forEach(el => {
+      helper.replaceHTML(el, data.waterTemp)
+    })
+    this.elements.stats.waterTemp.statuses.forEach(el => {
+      helper.replaceHTML(el, data.waterTemp)
+    })
+    this.elements.stats.pH.values.forEach(el => {
+      helper.replaceHTML(el, data.pH)
+    })
+    this.elements.stats.pH.statuses.forEach(el => {
+      helper.replaceHTML(el, data.pH)
+    })
+    this.elements.stats.conductivity.values.forEach(el => {
+      helper.replaceHTML(el, data.conductivity)
+    })
+    this.elements.stats.conductivity.statuses.forEach(el => {
+      helper.replaceHTML(el, data.conductivity)
+    })
   }
 }
 const animation = {
@@ -47,7 +104,6 @@ const animation = {
   },
   start: function(index) {
     index = index * 1
-    console.log(typeof index, index)
     switch (index) {
       case 0:
         this.fish.play()
@@ -84,7 +140,7 @@ const intersectionObserver = {
   options: {
     root: null, // refers to window. Use document.querySelector to refer to a container
     rootMargin: '0px', // margin around root. Values are similar to css property. Unitless values not allowed
-    threshold: 0.9 // visible amount of item shown in relation to root
+    threshold: 0.4 // visible amount of item shown in relation to root
   },
   init: function() {
     let observer = new IntersectionObserver(this.change, this.options) // set callback and options
@@ -102,7 +158,30 @@ const intersectionObserver = {
     })
   }
 }
-const api = {
-  init: function() {}
+const connect = {
+  socket: io(),
+  init: function() {
+    this.handleEvents()
+  },
+  handleEvents: function() {
+    this.socket.on('data', function(data) {
+      if (data) {
+        app.handleData(data)
+      }
+    })
+  }
+}
+const helper = {
+  emptyElement: function(element) {
+    // empty an html element
+    while (element.firstChild) {
+      element.removeChild(element.firstChild)
+    }
+  },
+  replaceHTML: function(element, string) {
+    // empty html and insert new value
+    this.emptyElement(element)
+    element.insertAdjacentHTML('beforeend', string)
+  }
 }
 app.init()
