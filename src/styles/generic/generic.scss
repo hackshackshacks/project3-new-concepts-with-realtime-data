@@ -96,7 +96,7 @@ a {
 }
 
 .animation__info {
-    margin-right: rem(48);
+    margin-right: rem(64);
     max-width: 40%;
     z-index: $zindex-animationInfo;
     background-color: #fff;
@@ -118,4 +118,8 @@ a {
 
 #bacteria {
     background-color: #fffefb;
+}
+
+#outro {
+    padding: rem(176) 0;
 }
