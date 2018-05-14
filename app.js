@@ -46,10 +46,10 @@ const api = {
         ),
         waterTemp: api.getStatus(
           'waterTemp',
-          helper.round(parsed.water_temp, 2)
+          helper.round(parsed.water_temp, 0)
         ),
-        humidity: api.getStatus('humidity', helper.round(parsed.humidity, 2)),
-        roomTemp: api.getStatus('roomTemp', helper.round(parsed.room_temp, 2)),
+        humidity: api.getStatus('humidity', helper.round(parsed.humidity, 0)),
+        roomTemp: api.getStatus('roomTemp', helper.round(parsed.room_temp, 0)),
         date: parsed.date,
         time: parsed.ph
       }

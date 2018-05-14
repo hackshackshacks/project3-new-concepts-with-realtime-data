@@ -13,9 +13,9 @@ const app = {
         values: document.querySelectorAll('.waterTemp .value'),
         statuses: document.querySelectorAll('.waterTemp .status')
       },
-      pH: {
-        values: document.querySelectorAll('.pH .value'),
-        statuses: document.querySelectorAll('.pH .status')
+      ph: {
+        values: document.querySelectorAll('.ph .value'),
+        statuses: document.querySelectorAll('.ph .status')
       },
       conductivity: {
         values: document.querySelectorAll('.conductivity .value'),
@@ -48,11 +48,11 @@ const app = {
     this.elements.stats.waterTemp.statuses.forEach(el => {
       helper.replaceHTML(el, data.waterTemp.status)
     })
-    this.elements.stats.pH.values.forEach(el => {
-      helper.replaceHTML(el, data.pH.value)
+    this.elements.stats.ph.values.forEach(el => {
+      helper.replaceHTML(el, data.ph.value)
     })
-    this.elements.stats.pH.statuses.forEach(el => {
-      helper.replaceHTML(el, data.pH.status)
+    this.elements.stats.ph.statuses.forEach(el => {
+      helper.replaceHTML(el, data.ph.status)
     })
     this.elements.stats.conductivity.values.forEach(el => {
       helper.replaceHTML(el, data.conductivity.value)
