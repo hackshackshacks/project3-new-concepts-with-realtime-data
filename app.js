@@ -36,7 +36,6 @@ const api = {
   },
   handleData: function(d) {
     let parsed = JSON.parse(d.body)
-    console.log('parsed:', parsed)
     if (d.body) {
       api.data = {
         ph: api.getStatus('ph', helper.round(parsed.ph, 2)),
@@ -50,16 +49,19 @@ const api = {
         ),
         humidity: api.getStatus('humidity', helper.round(parsed.humidity, 0)),
         roomTemp: api.getStatus('roomTemp', helper.round(parsed.room_temp, 0)),
-        date: parsed.date,
-        time: parsed.ph
+        time: new Date(
+          parsed.date.substring(6, 10),
+          Number(parsed.date.substring(3, 5)) - 1,
+          parsed.date.substring(0, 2),
+          Number(parsed.time.substring(0, 2)) + 2,
+          parsed.time.substring(3, 5),
+          parsed.time.substring(6, 8)
+        )
       }
       io.emit('data', api.data)
     }
   },
-  getStatus: function(stat, value, time) {
-    // if (time) {
-    //   let date = new Date(time)
-    // }
+  getStatus: function(stat, value) {
     let obj = {
       value: value
     }
