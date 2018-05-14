@@ -269,6 +269,7 @@ const helper = {
     } else if (obj.seconds > 1) {
       timeString += `${obj.seconds} seconden geleden`
     }
+    console.log(obj)
     return timeString
   }
 }
