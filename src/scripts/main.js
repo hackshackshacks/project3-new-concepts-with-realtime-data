@@ -1,6 +1,7 @@
 const app = {
   elements: {
     stats: {
+      time: document.querySelectorAll('time'),
       humidity: {
         wrap: document.querySelectorAll('.humidity'),
         values: document.querySelectorAll('.humidity .value'),
