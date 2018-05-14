@@ -47,8 +47,12 @@
     U+FEFF, U+FFFD;
 }
 
+/* colors */
+$blue: #3D58BC;
+
 /* Text */
 $text-dark: #2f2f2f;
+$text-blue: $blue;
 
 /* Backgrounds */
 $bg-light: #fff8ea;
@@ -57,3 +61,7 @@ $water-dark: #cbe4f3;
 
 /* Border */
 $border-radius: 3px;
+
+// z-indexes
+$zindex-nav: 3;
+$zindex-animationInfo: 2;

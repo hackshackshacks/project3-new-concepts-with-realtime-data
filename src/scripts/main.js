@@ -62,6 +62,7 @@ const app = {
     })
   }
 }
+<<<<<<< HEAD
 const animation = {
   config: {
     fish: {
@@ -135,6 +136,19 @@ const animation = {
         break
     }
   }
+=======
+const animations = [
+  lottie.loadAnimation(animData.fish),
+  lottie.loadAnimation(animData.water),
+  lottie.loadAnimation(animData.bacteria),
+  lottie.loadAnimation(animData.grow)
+]
+
+let options = {
+  root: null, // refers to window. Use document.querySelector to refer to a container
+  rootMargin: '0px', // margin around root. Values are similar to css property. Unitless values not allowed
+  threshold: 0.4 // visible amount of item shown in relation to root
+>>>>>>> 93e65708693cc084a5f8e57079d213e8c14636e2
 }
 const intersectionObserver = {
   options: {

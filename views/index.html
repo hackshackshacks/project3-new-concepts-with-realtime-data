@@ -1,13 +1,28 @@
 <!-- Variables -->
 {% set title = 'Aquaponics' %}
 
-<!-- Include base -->
 {% extends "components/base.html" %}
 
 {% block content %}
-    <!-- Include components into block -->
+
+    {% include "components/nav.html" %}
+
+    <section id="intro" class="text-section">
+        <h1>Aquaponics</h1>
+        <p>Aquaponics is, in tegenstelling tot <a href="#">huidige methodes</a>, een duurzame methode om voedsel te verbouwen, waarbij het kweken van waterdieren zoals slakken, vissen en schaaldieren gecombineerd wordt met het kweken van planten in water.</p>
+        <p><a href="//deceuvel.nl/nl/">De Ceuvel</a> heeft een aquaponics installatie waarmee een deel van het voedsel van het cafe verbouwd wordt. </p>
+        <a href="#fish" class="button button--full-width">Hoe werkt aquaponics?</a>
+    </section>
+
     {% include "components/fish.html" %}
     {% include "components/water.html" %}
     {% include "components/bacteria.html" %}
     {% include "components/grow.html" %}
+
+    <section id="outro" class="text-section">
+        <h1>Zelf bekijken?</h1>
+        <p>Bekijken hoe dit in het echt werkt? Kom langs bij ons op <a href="//deceuvel.nl/nl/tours/">De Ceuvel</a> voor een rondleiding!</p>
+        <a href="//deceuvel.nl/nl/tours/" class="button button--full-width">Reserveer nu een rondleiding!</a>
+    </section>
+
 {% endblock %}
