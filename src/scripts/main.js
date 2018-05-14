@@ -19,12 +19,20 @@ const animData = {
     loop: true,
     autoplay: false,
     path: '../animations/bacteria.json'
+  },
+  grow: {
+    container: document.querySelector('#animation-grow'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: false,
+    path: '../animations/growing-plants.json'
   }
 }
 const animations = [
   lottie.loadAnimation(animData.fish),
   lottie.loadAnimation(animData.water),
-  lottie.loadAnimation(animData.bacteria)
+  lottie.loadAnimation(animData.bacteria),
+  lottie.loadAnimation(animData.grow)
 ]
 
 let options = {
