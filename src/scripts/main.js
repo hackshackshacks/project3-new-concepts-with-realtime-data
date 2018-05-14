@@ -24,14 +24,13 @@ const animData = {
 const animations = [
   lottie.loadAnimation(animData.fish),
   lottie.loadAnimation(animData.water),
-  lottie.loadAnimation(animData.bacteria),
-  lottie.loadAnimation(animData.grow)
+  lottie.loadAnimation(animData.bacteria)
 ]
 
 let options = {
   root: null, // refers to window. Use document.querySelector to refer to a container
   rootMargin: '0px', // margin around root. Values are similar to css property. Unitless values not allowed
-  threshold: 0.9 // visible amount of item shown in relation to root
+  threshold: 0.4 // visible amount of item shown in relation to root
 }
 
 function startAnim(index) {
