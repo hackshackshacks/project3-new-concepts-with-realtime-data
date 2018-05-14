@@ -2,6 +2,9 @@
   .stats svg {
     animation: shrink 1s forwards 1s, moveLeft 1s forwards 2s;
   }
+  .content p {
+    animation: moveRight 1s forwards 2s;
+  }
 }
 .stats {
   display: grid;
@@ -69,7 +72,6 @@
     }
     p {
       opacity: 0;
-      animation: moveRight 1s forwards 2s;
       margin: 0;
     }
   }
