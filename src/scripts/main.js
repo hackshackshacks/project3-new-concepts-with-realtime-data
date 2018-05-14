@@ -35,81 +35,83 @@ const app = {
   },
   handleData: function(data) {
     console.log(data)
-    this.elements.stats.humidity.values.forEach(value => {
-      helper.replaceHTML(value, data.humidity.value)
-    })
-    this.elements.stats.humidity.statuses.forEach(status => {
-      helper.replaceHTML(status, data.humidity.status)
-    })
-    this.elements.stats.humidity.wrap.forEach(el => {
-      if (data.humidity.status === 'te hoog') {
-        el.classList.remove('low')
-        el.classList.add('high')
-      } else if (data.humidity.status === 'te laag') {
-        el.classList.remove('high')
-        el.classList.add('low')
-      }
-    })
-    this.elements.stats.roomTemp.values.forEach(el => {
-      helper.replaceHTML(el, data.roomTemp.value)
-    })
-    this.elements.stats.roomTemp.statuses.forEach(el => {
-      helper.replaceHTML(el, data.roomTemp.status)
-    })
-    this.elements.stats.roomTemp.wrap.forEach(el => {
-      if (data.roomTemp.status === 'te hoog') {
-        el.classList.remove('low')
-        el.classList.add('high')
-      } else if (data.roomTemp.status === 'te laag') {
-        el.classList.remove('high')
-        el.classList.add('low')
-      }
-    })
-    this.elements.stats.waterTemp.values.forEach(el => {
-      helper.replaceHTML(el, data.waterTemp.value)
-    })
-    this.elements.stats.waterTemp.statuses.forEach(el => {
-      helper.replaceHTML(el, data.waterTemp.status)
-    })
-    this.elements.stats.waterTemp.wrap.forEach(el => {
-      if (data.waterTemp.status === 'te hoog') {
-        el.classList.remove('low')
-        el.classList.add('high')
-      } else if (data.waterTemp.status === 'te laag') {
-        el.classList.remove('high')
-        el.classList.add('low')
-      }
-    })
-    this.elements.stats.ph.values.forEach(el => {
-      helper.replaceHTML(el, data.ph.value)
-    })
-    this.elements.stats.ph.statuses.forEach(el => {
-      helper.replaceHTML(el, data.ph.status)
-    })
-    this.elements.stats.ph.wrap.forEach(el => {
-      if (data.ph.status === 'te hoog') {
-        el.classList.remove('low')
-        el.classList.add('high')
-      } else if (data.ph.status === 'te laag') {
-        el.classList.remove('high')
-        el.classList.add('low')
-      }
-    })
-    this.elements.stats.conductivity.values.forEach(el => {
-      helper.replaceHTML(el, data.conductivity.value)
-    })
-    this.elements.stats.conductivity.statuses.forEach(el => {
-      helper.replaceHTML(el, data.conductivity.status)
-    })
-    this.elements.stats.conductivity.wrap.forEach(el => {
-      if (data.conductivity.status === 'te hoog') {
-        el.classList.remove('low')
-        el.classList.add('high')
-      } else if (data.conductivity.status === 'te laag') {
-        el.classList.remove('high')
-        el.classList.add('low')
-      }
-    })
+    if (data.humidity.value) {
+      this.elements.stats.humidity.values.forEach(value => {
+        helper.replaceHTML(value, data.humidity.value)
+      })
+      this.elements.stats.humidity.statuses.forEach(status => {
+        helper.replaceHTML(status, data.humidity.status)
+      })
+      this.elements.stats.humidity.wrap.forEach(el => {
+        if (data.humidity.status === 'te hoog') {
+          el.classList.remove('low')
+          el.classList.add('high')
+        } else if (data.humidity.status === 'te laag') {
+          el.classList.remove('high')
+          el.classList.add('low')
+        }
+      })
+      this.elements.stats.roomTemp.values.forEach(el => {
+        helper.replaceHTML(el, data.roomTemp.value)
+      })
+      this.elements.stats.roomTemp.statuses.forEach(el => {
+        helper.replaceHTML(el, data.roomTemp.status)
+      })
+      this.elements.stats.roomTemp.wrap.forEach(el => {
+        if (data.roomTemp.status === 'te hoog') {
+          el.classList.remove('low')
+          el.classList.add('high')
+        } else if (data.roomTemp.status === 'te laag') {
+          el.classList.remove('high')
+          el.classList.add('low')
+        }
+      })
+      this.elements.stats.waterTemp.values.forEach(el => {
+        helper.replaceHTML(el, data.waterTemp.value)
+      })
+      this.elements.stats.waterTemp.statuses.forEach(el => {
+        helper.replaceHTML(el, data.waterTemp.status)
+      })
+      this.elements.stats.waterTemp.wrap.forEach(el => {
+        if (data.waterTemp.status === 'te hoog') {
+          el.classList.remove('low')
+          el.classList.add('high')
+        } else if (data.waterTemp.status === 'te laag') {
+          el.classList.remove('high')
+          el.classList.add('low')
+        }
+      })
+      this.elements.stats.ph.values.forEach(el => {
+        helper.replaceHTML(el, data.ph.value)
+      })
+      this.elements.stats.ph.statuses.forEach(el => {
+        helper.replaceHTML(el, data.ph.status)
+      })
+      this.elements.stats.ph.wrap.forEach(el => {
+        if (data.ph.status === 'te hoog') {
+          el.classList.remove('low')
+          el.classList.add('high')
+        } else if (data.ph.status === 'te laag') {
+          el.classList.remove('high')
+          el.classList.add('low')
+        }
+      })
+      this.elements.stats.conductivity.values.forEach(el => {
+        helper.replaceHTML(el, data.conductivity.value)
+      })
+      this.elements.stats.conductivity.statuses.forEach(el => {
+        helper.replaceHTML(el, data.conductivity.status)
+      })
+      this.elements.stats.conductivity.wrap.forEach(el => {
+        if (data.conductivity.status === 'te hoog') {
+          el.classList.remove('low')
+          el.classList.add('high')
+        } else if (data.conductivity.status === 'te laag') {
+          el.classList.remove('high')
+          el.classList.add('low')
+        }
+      })
+    }
   }
 }
 const animation = {
