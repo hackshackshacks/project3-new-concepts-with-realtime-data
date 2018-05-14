@@ -20,12 +20,21 @@
   display: flex;
   justify-content: flex-end;
   position: relative;
-  .icon p, .status {
-    color: #64A300;
+  .time {
+    position: absolute;
+    top: 0.5rem;
+    right: 5rem;
+    font-size: 12px;
   }
-  &.high, &.low {
-    .icon p, .status {
-      color: #C1272D;
+  .icon p,
+  .status {
+    color: #64a300;
+  }
+  &.high,
+  &.low {
+    .icon p,
+    .status {
+      color: #c1272d;
     }
   }
   &:nth-child(1) {
