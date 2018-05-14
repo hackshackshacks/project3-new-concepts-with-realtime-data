@@ -143,7 +143,6 @@ nunjucks.configure('views', {
 app.get('/', (req, res) => {
   res.render('index.html', {})
 })
-
-http.listen(8001, () => {
+http.listen(process.env.PORT || 8001, () => {
   console.log('Listening.. port 8001')
 })
