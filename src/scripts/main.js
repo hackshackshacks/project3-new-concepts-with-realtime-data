@@ -1,7 +1,7 @@
 const app = {
   elements: {
     stats: {
-      time: document.querySelectorAll('time'),
+      time: document.querySelectorAll('.time'),
       humidity: {
         wrap: document.querySelectorAll('.humidity'),
         values: document.querySelectorAll('.humidity .value'),
@@ -29,6 +29,7 @@ const app = {
       }
     }
   },
+  timer: '',
   init: function() {
     intersectionObserver.init()
     animation.init()
@@ -111,6 +112,11 @@ const app = {
           el.classList.remove('high')
           el.classList.add('low')
         }
+      })
+      let timeElapsed = helper.timeElapsed(Date.now() - new Date(data.time))
+      console.log(timeElapsed)
+      this.elements.stats.time.forEach(el => {
+        helper.replaceHTML(el, timeElapsed)
       })
     }
   }
@@ -238,65 +244,89 @@ const helper = {
     // empty html and insert new value
     this.emptyElement(element)
     element.insertAdjacentHTML('beforeend', string)
+  },
+  timeElapsed: function(time) {
+    const obj = {}
+    obj.seconds = (time / 1000) % 60
+    obj.minutes = (time / (1000 * 60)) % 60
+    obj.hours = (time / (1000 * 60 * 60)) % 24
+
+    obj.hours = Math.round(obj.hours < 10 ? '0' + obj.hours : obj.hours)
+    obj.minutes = Math.round(obj.minutes < 10 ? '0' + obj.minutes : obj.minutes)
+    obj.seconds = Math.round(obj.seconds < 10 ? '0' + obj.seconds : obj.seconds)
+
+    let timeString = 'Laatste update: '
+    if (obj.hours) {
+      timeString += `${obj.hours} uur,`
+    }
+    if (obj.minutes === 1) {
+      timeString += `${obj.minutes} minuut,`
+    } else if (obj.minutes > 1) {
+      timeString += `${obj.minutes} minuten,`
+    }
+    if (obj.seconds === 1) {
+      timeString += `${obj.seconds} seconde geleden`
+    } else if (obj.seconds > 1) {
+      timeString += `${obj.seconds} seconden geleden`
+    }
+    return timeString
   }
 }
 const smoothScroll = {
-    // Scroll to function using requestanimationframe
-    // Source: https://stackoverflow.com/questions/17722497/scroll-smoothly-to-specific-element-on-page
-    scroll: function (elementY, duration) {
-        let startingY = window.pageYOffset
-        let diff = elementY - startingY
-        let start
+  // Scroll to function using requestanimationframe
+  // Source: https://stackoverflow.com/questions/17722497/scroll-smoothly-to-specific-element-on-page
+  scroll: function(elementY, duration) {
+    let startingY = window.pageYOffset
+    let diff = elementY - startingY
+    let start
 
-        // Bootstrap our animation - it will get called right before next frame shall be rendered.
-        window.requestAnimationFrame(function step(timestamp) {
-            if (!start) start = timestamp
-            // Elapsed milliseconds since start of scrolling.
-            let time = timestamp - start
-            // Get percent of completion in range [0, 1].
-            let percent = Math.min(time / duration, 1)
+    // Bootstrap our animation - it will get called right before next frame shall be rendered.
+    window.requestAnimationFrame(function step(timestamp) {
+      if (!start) start = timestamp
+      // Elapsed milliseconds since start of scrolling.
+      let time = timestamp - start
+      // Get percent of completion in range [0, 1].
+      let percent = Math.min(time / duration, 1)
 
-            window.scrollTo(0, startingY + diff * percent)
+      window.scrollTo(0, startingY + diff * percent)
 
-            // Proceed with animation as long as we wanted it to.
-            if (time < duration) {
-                window.requestAnimationFrame(step)
-            }
-        })
-    },
-    getElementY: function(element) {
-        return element.offsetTop
-    },
-    getElementHeight: function(element) {
-        return element.clientHeight
-    },
-    setEventListeners: function(element) {
-        const _this = this
+      // Proceed with animation as long as we wanted it to.
+      if (time < duration) {
+        window.requestAnimationFrame(step)
+      }
+    })
+  },
+  getElementY: function(element) {
+    return element.offsetTop
+  },
+  getElementHeight: function(element) {
+    return element.clientHeight
+  },
+  setEventListeners: function(element) {
+    const _this = this
 
-        element.addEventListener("click", function (event) {
-            event.preventDefault()
+    element.addEventListener('click', function(event) {
+      event.preventDefault()
 
-            let navElement = document.querySelector("nav"),
-                navHeight = _this.getElementHeight(navElement),
-                targetElementId = this.getAttribute("href"),
-                targetElement = document.querySelector(targetElementId),
-                targetElementY = _this.getElementY(targetElement)
+      let navElement = document.querySelector('nav'),
+        navHeight = _this.getElementHeight(navElement),
+        targetElementId = this.getAttribute('href'),
+        targetElement = document.querySelector(targetElementId),
+        targetElementY = _this.getElementY(targetElement)
 
-            _this.scroll(targetElementY - navHeight, 230)
-        })
-    },
-    init: function () {
-        const _this = this
-        const links = document.querySelectorAll("a")
+      _this.scroll(targetElementY - navHeight, 230)
+    })
+  },
+  init: function() {
+    const _this = this
+    const links = document.querySelectorAll('a')
 
-        links.forEach(function (link, index) {
-
-            if(link.href.indexOf("#") >= 0) {
-                _this.setEventListeners(link)
-            }
-
-        })
-    }
+    links.forEach(function(link, index) {
+      if (link.href.indexOf('#') >= 0) {
+        _this.setEventListeners(link)
+      }
+    })
+  }
 }
 app.init()
 
