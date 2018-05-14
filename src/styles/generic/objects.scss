@@ -15,15 +15,16 @@
   &:nth-child(2) {
     z-index: 2;
   }
-    &:hover .text {
-      max-width: 999px;
-      p {
-        animation: show 1s forwards;
-      }
+  &:hover .text {
+    max-width: 999px;
+    p,
+    h3 {
+      animation: show 1s forwards;
     }
-  
+  }
+
   .icon {
-    $size: 6rem;
+    $size: 8rem;
     border-radius: 100px;
     height: $size;
     width: $size;
@@ -32,16 +33,17 @@
     display: grid;
     place-items: center;
     z-index: 2;
-    border: 2px solid #DCE9EA;
+    border: 2px solid #dce9ea;
   }
   .content {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     align-items: center;
-      text-align: center;
-      justify-items: center;
-    svg, p {
+    text-align: center;
+    justify-items: center;
+    svg,
+    p {
       grid-column: 1 / -1;
       grid-row: 1 / -1;
     }
@@ -52,14 +54,14 @@
     p {
       opacity: 0;
       animation: moveRight 1s forwards 2s;
+      margin: 0;
     }
   }
 }
 .text {
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
-  background: rgba(255,255,255,0.8);
-  width: 400px;
+  background: rgba(255, 255, 255, 0.8);
   max-width: 0;
   overflow: hidden;
   transition: 1s;
@@ -67,10 +69,22 @@
   right: 3rem;
   top: 0;
   height: 100%;
-  border: 2px solid #DCE9EA;
-  p {
+  border: 2px solid #dce9ea;
+  padding: 1.5rem 2rem 1rem 2rem;
+  p,
+  h3 {
     opacity: 0;
-  padding: 0 3rem 0 2rem;
+  }
+  h3 {
+    font-size: 1em;
+    font-weight: normal;
+  }
+  p {
+    font-size: 0.8em;
+    max-width: 500px;
+    white-space: nowrap;
+    margin-right: 12rem;
+    color: $text-light;
   }
 }
 @keyframes shrink {
@@ -80,12 +94,12 @@
 }
 @keyframes moveLeft {
   to {
-    transform: translatex(-15px);
+    transform: translatex(-20px);
   }
 }
 @keyframes moveRight {
   to {
-    transform: translatex(15px);
+    transform: translatex(20px);
     opacity: 1;
   }
 }
