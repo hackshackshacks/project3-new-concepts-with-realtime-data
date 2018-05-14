@@ -12,6 +12,14 @@
   display: flex;
   justify-content: flex-end;
   position: relative;
+  .icon p, .status {
+    color: #64A300;
+  }
+  &.high, &.low {
+    .icon p, .status {
+      color: #C1272D;
+    }
+  }
   &:nth-child(1) {
     z-index: 1;
   }
