@@ -264,7 +264,7 @@ const helper = {
     } else if (obj.minutes > 1) {
       timeString += `${obj.minutes} minuten,`
     }
-    if (obj.seconds === 1) {
+    if (obj.seconds <= 1) {
       timeString += `${obj.seconds} seconde geleden`
     } else if (obj.seconds > 1) {
       timeString += `${obj.seconds} seconden geleden`
